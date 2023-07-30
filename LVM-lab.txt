@@ -1,0 +1,43 @@
+ADD two new hardisk to centos system
+
+lsblk for search new hardisk 
+[root@nfs-client ~]# lsblk
+NAME              MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+sda                 8:0    0   20G  0 disk
+├─sda1              8:1    0    1G  0 part  /boot
+└─sda2              8:2    0   19G  0 part
+  ├─centos-root   253:0    0   17G  0 lvm   /
+  └─centos-swap   253:1    0    2G  0 lvm   [SWAP]
+sdb                 8:16   0   20G  0 disk
+└─md127             9:127  0   20G  0 raid1
+  └─md127p1       259:0    0   20G  0 md
+sdc                 8:32   0   20G  0 disk
+└─md127             9:127  0   20G  0 raid1
+  └─md127p1       259:0    0   20G  0 md
+sdd                 8:48   0   20G  0 disk
+└─HPCSA-hpcsa_lab 253:2    0    3G  0 lvm   /root/lab
+sde                 8:64   0   20G  0 disk
+sr0                11:0    1  973M  0 rom
+
+
+pvcreate /dev/sdd /dev/sde --> for create physical volume
+vgcreate HPCSA /dev/sdd /dev/sde --> for create virtual group
+lvcreate -n hpcsa_lab --size 1G HPCSA -- for create logical volume
+
+
+fdisk /dev/mapper/HPCSA-hpcsa_lab
+
+press n and create new partition
+
+mkfs.ext4 /dev/mapper/HPCSA-hpcsa_lab
+
+mkdir lab
+mount /dev/mapper/HPCSA-hpcsa_lab lab
+
+
+lvextend -L +2G /dev/mapper/HPCSA-hpcsa_lab  - for extend logical volume
+resizefs /dev/mapper/HPCSA-hpcsa_lab
+
+lvcreate-L 1GB -s -n hpcsa_lab_snap /dev/mapper/HPCSA-hpcsa_lab
+
+lvconvert --merge /dev/mapper/HPCSA-hpcsa_lab

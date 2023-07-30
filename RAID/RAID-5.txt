@@ -1,0 +1,41 @@
+==================================================================================================
+                        Configure RAID-5 Drive 
+==================================================================================================
+               ADD Three new hardisk in Centos7 System
+==================================================================================================
+
+
+
+[root@localhost ~]# blkid
+[root@localhost ~]# lsblk
+[root@localhost ~]# yum install mdadm
+[root@localhost ~]# mdadm --create --verbose /dev/md5 --level=5 --raid-devices=3 /dev/sdf /dev/sdg /dev/sdh
+[root@localhost ~]# mkfs.ext4 /dev/md5
+[root@localhost ~]# mkdir /mnt/raid5
+[root@localhost ~]# mount /dev/md5 /mnt/raid5/
+[root@localhost ~]# df -h
+[root@localhost ~]# mdadm --detail /dev/md5
+[root@localhost ~]# blkid
+        or
+[root@localhost ~]# blkid /dev/md5
+                   -------------------------------------------
+  Copy UUID  eg:-   UUID=80052ded-0863e1e6-bbccf042-108df625
+                   -------------------------------------------
+[root@localhost ~]# vi /etc/fstab
+                    ------------------------------------------------------------------------------
+          eg:-        UUID=e9fefb27-b78f-4af0-969c-44f94c4b3022 /mnt/raid5 ext4 defaults 0 0
+                    ------------------------------------------------------------------------------
+                     Add UUID & save
+                    ------------------------------------------------------------------------------
+[root@localhost ~]# df -h
+[root@localhost ~]# mount -av
+[root@localhost ~]# reboot
+[root@localhost ~]# mdadm --detail /dev/md5
+[root@localhost ~]# halt  
+
+==================================================================================================
+                        Stop and remove a RAID array
+==================================================================================================
+[root@localhost ~]# umount /mnt/raid5
+[root@localhost ~]# mdadm --stop /dev/md5
+[root@localhost ~]# mdadm --remove /dev/md5
