@@ -1,0 +1,77 @@
+    2  ssh-keygen
+    3  vi /etc/hosts
+    4  hostname
+    5  vi /etc/hosts
+    6  ssh-copy-id sbm
+    7  ssh-copy-id sbm1
+    8  ssh-copy-id sbm2
+    9  cd /etc/yum.repos.d/
+   10  vi lustre-repo.conf
+   11  scp lustre-repo.conf root@sbm1:/etc/yum.repos.d/
+   12  scp lustre-repo.conf root@sbm2:/etc/yum.repos.d/
+   13  yum --nogpgcheck --disablerepo=* --enablerepo=e2fsprogs-wc install e2fsprogs
+   14  yum repo-sync
+   15  yum reposync
+   16  reposync
+   17  yum reposync
+   18  yum  install e2fsprogs
+   19  yum reposync all
+   20  yum update
+   21  ls
+   22  yum --nogpgcheck --disablerepo=* --enablerepo=e2fsprogs-wc install e2fsprogs
+   23  yum  install e2fsprogs
+   24  yum repolist
+   25  ls
+   26  mv lustre-repo.conf lustre.repo
+   27  yum repolist
+   28  yum --nogpgcheck --disablerepo=* --enablerepo=e2fsprogs-wc install e2fsprogs
+   29  yum -y install http://download.zfsonlinux.org/epel/zfs-release.el7_4.noarch.rpm
+   30  yum update perl -y
+   31  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel --skipbroken
+   32  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel 
+   33  yum --nogpgcheck --enablerepo=lustre-server install kmod-lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre lustre-resource-agents
+   34  init 6
+   35  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel --skipbroken
+   36  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel 
+   37  yum install -y kernel-tools-libs = 3.10.0-1062.1.1.el7_lustre
+   38  yum install -y kernel-tools-libs-3.10.0-1062.1.1.el7_lustre.x86_64
+   39  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel --skip-broken
+   40  yum install kernel-devel.x86_64 0:3.10.0-1062.1.1.el7_lustre 
+   41  yum install kernel-tools-libs-devel.x86_64 0:3.10.0-1062.1.1.el7_lustre
+   42  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel 
+   43  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel --skip-broken
+   44  pkill -9 yum
+   45  yum --nogpgcheck --disablerepo=base,extras,updates --enablerepo=lustre-server install kernel kernel-devel kernel-headers kernel-tools kernel-tools-libs kernel-tools-libs-devel --skip-broken
+   46  yum --nogpgcheck --enablerepo=lustre-server install kmod-lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre lustre-resource-agents
+   47  modprobe -v lustre
+   48  lustre_rmmod
+  
+  103  lctl network configure
+  104  modprobe -v lustre
+  105  lctl network configure
+  106  lctl ping server2@tcpo
+  108  lctl ping client@tcp0
+  109  df �h
+Disk add:-3
+  110  lsblk
+  111  init 6
+  112  lsblk
+  113  init 6
+  114  lsblk
+  115  mkfs.lustre --fsname lustre --mgs --mdt --index= /dev/sdb
+  116* mkdir /mnt/MDS192
+  117  mount -t lustre /dev/sdb/mnt/MDs
+  118  mount -t lustre /dev/sdb /mnt/MDs
+  119  cd /mnt/
+  120  ls
+  121  mount -t lustre /dev/sdb /mnt/MDS
+  122  lsblk
+  123  mkdir ost
+    125  mount -t lustre /dev/sdc /mnt/ost
+  126  history
+  127  mkfs.lustre --fsname lustre --ost --mgsnode=192.168.253.169@tcp0 --index= /dev/sdc
+  128  mount -t lustre /dev/sdc /mnt/ost
+  129  umount -o lustre /dev/sdc /mnt/ost
+  130* mount  lustre /dev/sdc /mnt/ost
+  131  mount -t lustre /dev/sdc /mnt/ost
+  

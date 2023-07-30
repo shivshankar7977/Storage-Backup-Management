@@ -1,0 +1,37 @@
+    1  ip a
+    2  nmtui
+    3  ip a
+    4  yum update -y
+    5  systemctl status firewalld
+    6  systemctl stop firewalld 
+    7  systemctl disable firewalld 
+    8  systemctl status firewalld
+    9  vi /etc/selinux/config 
+   10  setenforce 0
+   11  init 6
+   12  nmtui
+   13  vi /etc/hosts
+   14  ip a
+   15  nmtui
+   16  ip a
+   17  ssh-keygen 
+   18  ssh-copy-id sbm
+   19  ssh-copy-id sbm1
+   20  ssh-copy-id sbm2
+   21  cd /etc/yum.repos.d/
+   22  ls
+   23  mv lustre-repo.conf lustre.repo
+   24  yum repolist
+   25  yum --nogpgcheck --disablerepo=* --enablerepo=e2fsprogs-wc install e2fsprogs
+   26  init 6
+   27  yum install kernel kernel-devel kernel-headers kernel-abi-whitelists kernel-tools kernel-tools-libs kernel-tools-libs-devel -y
+  
+   33  yum install epel-release
+   34  yum --nogpgcheck --enablerepo=lustre-client install lustre-client-dkms lustre-client
+   37  modprobe -v lustre
+   38  mkdir /mnt/lustre
+   39  mount  -t oss_server_ip@tcp0:/lustre /mnt/lustre
+   40  lsblk
+   41  lfs df -h
+   
+ 
